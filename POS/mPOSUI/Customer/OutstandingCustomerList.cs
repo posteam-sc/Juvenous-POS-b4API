@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 using POS.APP_Data;
 
 namespace POS
@@ -247,6 +248,59 @@ namespace POS
         private void dgvCustomerList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel Files (*.xlsx)|*.xlsx",
+                Title = "Save an Excel File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                // Check if filePath is valid
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    MessageBox.Show("Invalid file path.");
+                    return;
+                }
+
+                try
+                {
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("OutstandingCustomers");
+
+                        // Add headers
+                        worksheet.Cell(1, 1).Value = "Id";
+                        worksheet.Cell(1, 2).Value = "Name";
+                        worksheet.Cell(1, 3).Value = "PhoneNumber";
+                        worksheet.Cell(1, 4).Value = "PayableAmount";
+                        worksheet.Cell(1, 5).Value = "RefundAmount";
+                        // Add data
+                        for (int i = 0; i < crlist.Count; i++)
+                        {
+                            worksheet.Cell(i + 2, 1).Value = crlist[i].Id;
+                            worksheet.Cell(i + 2, 2).Value = crlist[i].Name;
+                            worksheet.Cell(i + 2, 3).Value = crlist[i].PhNo;
+                            worksheet.Cell(i + 2, 4).Value = crlist[i].PayableAmount;
+                            worksheet.Cell(i + 2, 5).Value = crlist[i].RefundAmount;
+                        }
+
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("File saved successfully to " + filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
         }
     }
 }

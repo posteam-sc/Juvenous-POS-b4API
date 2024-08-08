@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OutstandingCustomerList));
             this.dgvCustomerList = new System.Windows.Forms.DataGridView();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +43,7 @@
             this.cboCustomerName = new System.Windows.Forms.ComboBox();
             this.lblSupplierName = new System.Windows.Forms.Label();
             this.lblsName = new System.Windows.Forms.Label();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomerList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -67,13 +69,20 @@
             this.Column5,
             this.Column8,
             this.Column3});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCustomerList.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCustomerList.Location = new System.Drawing.Point(3, 71);
             this.dgvCustomerList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvCustomerList.Name = "dgvCustomerList";
             this.dgvCustomerList.Size = new System.Drawing.Size(782, 587);
             this.dgvCustomerList.TabIndex = 2;
             this.dgvCustomerList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomerList_CellClick);
-           // this.dgvCustomerList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomerList_CellContentClick);
             this.dgvCustomerList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCustomerList_DataBindingComplete);
             // 
             // Column6
@@ -175,12 +184,23 @@
             this.lblsName.TabIndex = 0;
             this.lblsName.Text = "Patient Name :";
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(682, 22);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 3;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // OutstandingCustomerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(791, 663);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAddNewCustomer);
             this.Controls.Add(this.dgvCustomerList);
@@ -214,5 +234,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewLinkColumn Column3;
+        private System.Windows.Forms.Button btnExport;
     }
 }

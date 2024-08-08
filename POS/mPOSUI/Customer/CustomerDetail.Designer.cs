@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerDetail));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblNrc = new System.Windows.Forms.Label();
@@ -44,6 +44,15 @@
             this.lblAddress = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvOutstandingTransaction = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPaidThisTrans = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.colRefund = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.colViewDetail = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnnote = new System.Windows.Forms.Button();
@@ -72,15 +81,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.lblPayableAmt = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPaidThisTrans = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.colRefund = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.colViewDetail = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.btnExport = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutstandingTransaction)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -108,54 +109,54 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 13);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(18, 10);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(322, 89);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(242, 68);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblNrc
             // 
             this.lblNrc.AutoSize = true;
-            this.lblNrc.Location = new System.Drawing.Point(135, 44);
+            this.lblNrc.Location = new System.Drawing.Point(101, 34);
             this.lblNrc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNrc.Name = "lblNrc";
-            this.lblNrc.Size = new System.Drawing.Size(49, 18);
+            this.lblNrc.Size = new System.Drawing.Size(39, 15);
             this.lblNrc.TabIndex = 6;
             this.lblNrc.Text = "NRC :";
             // 
             // lblPhoneNumber
             // 
             this.lblPhoneNumber.AutoSize = true;
-            this.lblPhoneNumber.Location = new System.Drawing.Point(135, 22);
+            this.lblPhoneNumber.Location = new System.Drawing.Point(101, 17);
             this.lblPhoneNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
-            this.lblPhoneNumber.Size = new System.Drawing.Size(116, 18);
+            this.lblPhoneNumber.Size = new System.Drawing.Size(97, 15);
             this.lblPhoneNumber.TabIndex = 5;
             this.lblPhoneNumber.Text = "Phone Number :";
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(135, 0);
+            this.lblName.Location = new System.Drawing.Point(101, 0);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(56, 18);
+            this.lblName.Size = new System.Drawing.Size(47, 15);
             this.lblName.TabIndex = 4;
             this.lblName.Text = "Name :";
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(135, 66);
+            this.lblEmail.Location = new System.Drawing.Point(101, 51);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(56, 18);
+            this.lblEmail.Size = new System.Drawing.Size(47, 15);
             this.lblEmail.TabIndex = 4;
             this.lblEmail.Text = "Name :";
             // 
@@ -165,57 +166,57 @@
             this.label1.Location = new System.Drawing.Point(2, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 18);
+            this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Customer Name :";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(2, 66);
+            this.label9.Location = new System.Drawing.Point(2, 51);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 18);
+            this.label9.Size = new System.Drawing.Size(45, 15);
             this.label9.TabIndex = 0;
             this.label9.Text = "Email :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 22);
+            this.label2.Location = new System.Drawing.Point(2, 17);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 18);
+            this.label2.Size = new System.Drawing.Size(94, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Phone Number :";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2, 44);
+            this.label3.Location = new System.Drawing.Point(2, 34);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 18);
+            this.label3.Size = new System.Drawing.Size(39, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "NRC :";
             // 
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(116, 66);
+            this.lblAddress.Location = new System.Drawing.Point(88, 51);
             this.lblAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(70, 18);
+            this.lblAddress.Size = new System.Drawing.Size(57, 15);
             this.lblAddress.TabIndex = 7;
             this.lblAddress.Text = "Address :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 66);
+            this.label4.Location = new System.Drawing.Point(2, 51);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 18);
+            this.label4.Size = new System.Drawing.Size(57, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "Address :";
             // 
@@ -243,24 +244,92 @@
             this.colPaidThisTrans,
             this.colRefund,
             this.colViewDetail});
-            this.dgvOutstandingTransaction.Location = new System.Drawing.Point(2, 6);
-            this.dgvOutstandingTransaction.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dgvOutstandingTransaction.Location = new System.Drawing.Point(2, 5);
+            this.dgvOutstandingTransaction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvOutstandingTransaction.Name = "dgvOutstandingTransaction";
-            this.dgvOutstandingTransaction.Size = new System.Drawing.Size(1103, 300);
+            this.dgvOutstandingTransaction.Size = new System.Drawing.Size(827, 229);
             this.dgvOutstandingTransaction.TabIndex = 5;
             this.dgvOutstandingTransaction.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOutstandingTransaction_CellClick);
             this.dgvOutstandingTransaction.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvOutstandingTransaction_DataBindingComplete);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Id";
+            this.Column1.HeaderText = "TransactionId";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            dataGridViewCellStyle2.Format = "dd-MM-yyyy";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column2.HeaderText = "Date";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Time";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 90;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "SalesPerson";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Outstanding Amount";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Refund Amount";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // colPaidThisTrans
+            // 
+            this.colPaidThisTrans.HeaderText = "";
+            this.colPaidThisTrans.Name = "colPaidThisTrans";
+            this.colPaidThisTrans.Text = "Paid This";
+            this.colPaidThisTrans.UseColumnTextForLinkValue = true;
+            this.colPaidThisTrans.Width = 75;
+            // 
+            // colRefund
+            // 
+            this.colRefund.HeaderText = "";
+            this.colRefund.Name = "colRefund";
+            this.colRefund.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colRefund.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colRefund.Text = "Refund Detail";
+            this.colRefund.UseColumnTextForLinkValue = true;
+            this.colRefund.Width = 75;
+            // 
+            // colViewDetail
+            // 
+            this.colViewDetail.HeaderText = "";
+            this.colViewDetail.Name = "colViewDetail";
+            this.colViewDetail.Text = "View Detail";
+            this.colViewDetail.UseColumnTextForLinkValue = true;
+            this.colViewDetail.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.colViewDetail.Width = 75;
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(24, 133);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tabControl1.Location = new System.Drawing.Point(18, 102);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1126, 431);
+            this.tabControl1.Size = new System.Drawing.Size(844, 330);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage1
@@ -268,11 +337,11 @@
             this.tabPage1.Controls.Add(this.btnnote);
             this.tabPage1.Controls.Add(this.dgvOutstandingTransaction);
             this.tabPage1.Controls.Add(this.btnPaidCash);
-            this.tabPage1.Location = new System.Drawing.Point(4, 27);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage1.Size = new System.Drawing.Size(1118, 400);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Size = new System.Drawing.Size(836, 302);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Latest Outstanding Transaction";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -281,10 +350,10 @@
             // 
             this.btnnote.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btnnote.Image = global::POS.Properties.Resources.notepng;
-            this.btnnote.Location = new System.Drawing.Point(692, 306);
+            this.btnnote.Location = new System.Drawing.Point(519, 234);
             this.btnnote.Margin = new System.Windows.Forms.Padding(2);
             this.btnnote.Name = "btnnote";
-            this.btnnote.Size = new System.Drawing.Size(79, 89);
+            this.btnnote.Size = new System.Drawing.Size(59, 68);
             this.btnnote.TabIndex = 62;
             this.btnnote.UseVisualStyleBackColor = false;
             this.btnnote.Click += new System.EventHandler(this.btnnote_Click);
@@ -297,10 +366,10 @@
             this.btnPaidCash.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPaidCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaidCash.Image = global::POS.Properties.Resources.paiddebtbycash;
-            this.btnPaidCash.Location = new System.Drawing.Point(909, 320);
-            this.btnPaidCash.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnPaidCash.Location = new System.Drawing.Point(682, 245);
+            this.btnPaidCash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPaidCash.Name = "btnPaidCash";
-            this.btnPaidCash.Size = new System.Drawing.Size(196, 61);
+            this.btnPaidCash.Size = new System.Drawing.Size(147, 47);
             this.btnPaidCash.TabIndex = 8;
             this.btnPaidCash.UseVisualStyleBackColor = true;
             this.btnPaidCash.Click += new System.EventHandler(this.btnPaidCash_Click);
@@ -308,11 +377,11 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dgvOldTransaction);
-            this.tabPage2.Location = new System.Drawing.Point(4, 27);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabPage2.Size = new System.Drawing.Size(979, 383);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Size = new System.Drawing.Size(836, 302);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Old Transaction";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -333,10 +402,10 @@
             this.Column17,
             this.Column18,
             this.dataGridViewLinkColumn2});
-            this.dgvOldTransaction.Location = new System.Drawing.Point(0, 19);
-            this.dgvOldTransaction.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dgvOldTransaction.Location = new System.Drawing.Point(0, 15);
+            this.dgvOldTransaction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvOldTransaction.Name = "dgvOldTransaction";
-            this.dgvOldTransaction.Size = new System.Drawing.Size(946, 368);
+            this.dgvOldTransaction.Size = new System.Drawing.Size(710, 281);
             this.dgvOldTransaction.TabIndex = 6;
             this.dgvOldTransaction.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOldTransaction_CellClick);
             this.dgvOldTransaction.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvOldTransaction_DataBindingComplete);
@@ -409,15 +478,15 @@
             this.tableLayoutPanel2.Controls.Add(this.lblCity, 1, 2);
             this.tableLayoutPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(513, 13);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(385, 10);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(307, 89);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(230, 68);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
             // label10
@@ -426,57 +495,57 @@
             this.label10.Location = new System.Drawing.Point(2, 0);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 18);
+            this.label10.Size = new System.Drawing.Size(57, 15);
             this.label10.TabIndex = 1;
             this.label10.Text = "Birthday :";
             // 
             // lblBirthday
             // 
             this.lblBirthday.AutoSize = true;
-            this.lblBirthday.Location = new System.Drawing.Point(116, 0);
+            this.lblBirthday.Location = new System.Drawing.Point(88, 0);
             this.lblBirthday.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBirthday.Name = "lblBirthday";
-            this.lblBirthday.Size = new System.Drawing.Size(116, 18);
+            this.lblBirthday.Size = new System.Drawing.Size(97, 15);
             this.lblBirthday.TabIndex = 5;
             this.lblBirthday.Text = "Phone Number :";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(2, 22);
+            this.label11.Location = new System.Drawing.Point(2, 17);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 18);
+            this.label11.Size = new System.Drawing.Size(54, 15);
             this.label11.TabIndex = 2;
             this.label11.Text = "Gender :";
             // 
             // lblGender
             // 
             this.lblGender.AutoSize = true;
-            this.lblGender.Location = new System.Drawing.Point(116, 22);
+            this.lblGender.Location = new System.Drawing.Point(88, 17);
             this.lblGender.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(49, 18);
+            this.lblGender.Size = new System.Drawing.Size(39, 15);
             this.lblGender.TabIndex = 6;
             this.lblGender.Text = "NRC :";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(2, 44);
+            this.label12.Location = new System.Drawing.Point(2, 34);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(41, 18);
+            this.label12.Size = new System.Drawing.Size(32, 15);
             this.label12.TabIndex = 3;
             this.label12.Text = "City :";
             // 
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(116, 44);
+            this.lblCity.Location = new System.Drawing.Point(88, 34);
             this.lblCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(70, 18);
+            this.lblCity.Size = new System.Drawing.Size(57, 15);
             this.lblCity.TabIndex = 7;
             this.lblCity.Text = "Address :";
             // 
@@ -488,22 +557,22 @@
             this.tableLayoutPanel3.Controls.Add(this.lblTotalOutstanding, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(24, 103);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(18, 79);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(322, 18);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(242, 14);
             this.tableLayoutPanel3.TabIndex = 8;
             // 
             // lblTotalOutstanding
             // 
             this.lblTotalOutstanding.AutoSize = true;
-            this.lblTotalOutstanding.Location = new System.Drawing.Point(163, 0);
+            this.lblTotalOutstanding.Location = new System.Drawing.Point(123, 0);
             this.lblTotalOutstanding.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalOutstanding.Name = "lblTotalOutstanding";
-            this.lblTotalOutstanding.Size = new System.Drawing.Size(13, 18);
+            this.lblTotalOutstanding.Size = new System.Drawing.Size(11, 14);
             this.lblTotalOutstanding.TabIndex = 1;
             this.lblTotalOutstanding.Text = "-";
             this.lblTotalOutstanding.Visible = false;
@@ -514,7 +583,7 @@
             this.label5.Location = new System.Drawing.Point(2, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 18);
+            this.label5.Size = new System.Drawing.Size(106, 14);
             this.label5.TabIndex = 0;
             this.label5.Text = "Total Outstanding Amount :";
             this.label5.Visible = false;
@@ -527,13 +596,13 @@
             this.tableLayoutPanel4.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.lblPayableAmt, 1, 0);
             this.tableLayoutPanel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(513, 109);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(385, 83);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(307, 18);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(230, 14);
             this.tableLayoutPanel4.TabIndex = 9;
             // 
             // label6
@@ -542,94 +611,37 @@
             this.label6.Location = new System.Drawing.Point(2, 0);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 18);
+            this.label6.Size = new System.Drawing.Size(54, 14);
             this.label6.TabIndex = 0;
             this.label6.Text = "Payable Amount:";
             // 
             // lblPayableAmt
             // 
             this.lblPayableAmt.AutoSize = true;
-            this.lblPayableAmt.Location = new System.Drawing.Point(116, 0);
+            this.lblPayableAmt.Location = new System.Drawing.Point(88, 0);
             this.lblPayableAmt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPayableAmt.Name = "lblPayableAmt";
-            this.lblPayableAmt.Size = new System.Drawing.Size(13, 18);
+            this.lblPayableAmt.Size = new System.Drawing.Size(11, 14);
             this.lblPayableAmt.TabIndex = 1;
             this.lblPayableAmt.Text = "-";
             // 
-            // Column1
+            // btnExport
             // 
-            this.Column1.DataPropertyName = "Id";
-            this.Column1.HeaderText = "TransactionId";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            dataGridViewCellStyle2.Format = "dd-MM-yyyy";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column2.HeaderText = "Date";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Time";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 90;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "SalesPerson";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Outstanding Amount";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Refund Amount";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // colPaidThisTrans
-            // 
-            this.colPaidThisTrans.HeaderText = "";
-            this.colPaidThisTrans.Name = "colPaidThisTrans";
-            this.colPaidThisTrans.Text = "Paid This";
-            this.colPaidThisTrans.UseColumnTextForLinkValue = true;
-            this.colPaidThisTrans.Width = 75;
-            // 
-            // colRefund
-            // 
-            this.colRefund.HeaderText = "";
-            this.colRefund.Name = "colRefund";
-            this.colRefund.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colRefund.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colRefund.Text = "Refund Detail";
-            this.colRefund.UseColumnTextForLinkValue = true;
-            this.colRefund.Width = 75;
-            // 
-            // colViewDetail
-            // 
-            this.colViewDetail.HeaderText = "";
-            this.colViewDetail.Name = "colViewDetail";
-            this.colViewDetail.Text = "View Detail";
-            this.colViewDetail.UseColumnTextForLinkValue = true;
-            this.colViewDetail.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.colViewDetail.Width = 75;
+            this.btnExport.Location = new System.Drawing.Point(673, 44);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 10;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // CustomerDetail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1170, 568);
+            this.ClientSize = new System.Drawing.Size(878, 434);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -637,7 +649,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CustomerDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer Detail";
@@ -710,5 +722,6 @@
         private System.Windows.Forms.DataGridViewLinkColumn colPaidThisTrans;
         private System.Windows.Forms.DataGridViewLinkColumn colRefund;
         private System.Windows.Forms.DataGridViewLinkColumn colViewDetail;
+        private System.Windows.Forms.Button btnExport;
     }
 }

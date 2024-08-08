@@ -32,6 +32,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemList));
             this.dgvItemList = new System.Windows.Forms.DataGridView();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -51,19 +64,7 @@
             this.rdNonConsignment = new System.Windows.Forms.RadioButton();
             this.rdConsignment = new System.Windows.Forms.RadioButton();
             this.btnPBC = new System.Windows.Forms.Button();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -104,6 +105,92 @@
             this.dgvItemList.TabIndex = 3;
             this.dgvItemList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemList_CellClick);
             this.dgvItemList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvItemList_DataBindingComplete);
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Id";
+            this.Column9.Name = "Column9";
+            this.Column9.Visible = false;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "No.";
+            this.Column10.Name = "Column10";
+            this.Column10.Width = 40;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Product Code";
+            this.Column1.Name = "Column1";
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Barcode";
+            this.Column12.Name = "Column12";
+            // 
+            // Column2
+            // 
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Zawgyi-One", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column2.HeaderText = "Product Name";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 250;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Qty";
+            this.Column3.Name = "Column3";
+            // 
+            // Column13
+            // 
+            this.Column13.DataPropertyName = "PackageQty";
+            this.Column13.HeaderText = "Frequency Times";
+            this.Column13.Name = "Column13";
+            this.Column13.Width = 130;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Unit Price";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 150;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Discount Percent";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 120;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "";
+            this.Column6.Name = "Column6";
+            this.Column6.Text = "Edit";
+            this.Column6.UseColumnTextForLinkValue = true;
+            this.Column6.Width = 60;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "";
+            this.Column7.Name = "Column7";
+            this.Column7.Text = "Print Barcode";
+            this.Column7.UseColumnTextForLinkValue = true;
+            this.Column7.Visible = false;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "";
+            this.Column8.Name = "Column8";
+            this.Column8.Text = "Delete";
+            this.Column8.UseColumnTextForLinkValue = true;
+            this.Column8.Width = 60;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "";
+            this.Column11.Name = "Column11";
+            this.Column11.Text = "Price Change History";
+            this.Column11.UseColumnTextForLinkValue = true;
+            this.Column11.Width = 160;
             // 
             // label2
             // 
@@ -334,91 +421,15 @@
             this.btnPBC.Visible = false;
             this.btnPBC.Click += new System.EventHandler(this.btnPBC_Click);
             // 
-            // Column9
+            // btnExport
             // 
-            this.Column9.HeaderText = "Id";
-            this.Column9.Name = "Column9";
-            this.Column9.Visible = false;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "No.";
-            this.Column10.Name = "Column10";
-            this.Column10.Width = 40;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Product Code";
-            this.Column1.Name = "Column1";
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Barcode";
-            this.Column12.Name = "Column12";
-            // 
-            // Column2
-            // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Zawgyi-One", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column2.HeaderText = "Product Name";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 250;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Qty";
-            this.Column3.Name = "Column3";
-            // 
-            // Column13
-            // 
-            this.Column13.DataPropertyName = "PackageQty";
-            this.Column13.HeaderText = "Frequency Times";
-            this.Column13.Name = "Column13";
-            this.Column13.Width = 130;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Unit Price";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 150;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Discount Percent";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 120;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "";
-            this.Column6.Name = "Column6";
-            this.Column6.Text = "Edit";
-            this.Column6.UseColumnTextForLinkValue = true;
-            this.Column6.Width = 60;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "";
-            this.Column7.Name = "Column7";
-            this.Column7.Text = "Print Barcode";
-            this.Column7.UseColumnTextForLinkValue = true;
-            this.Column7.Visible = false;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "";
-            this.Column8.Name = "Column8";
-            this.Column8.Text = "Delete";
-            this.Column8.UseColumnTextForLinkValue = true;
-            this.Column8.Width = 60;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "";
-            this.Column11.Name = "Column11";
-            this.Column11.Text = "Price Change History";
-            this.Column11.UseColumnTextForLinkValue = true;
-            this.Column11.Width = 160;
+            this.btnExport.Location = new System.Drawing.Point(591, 102);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 5;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // ItemList
             // 
@@ -426,6 +437,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1343, 685);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnPBC);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -482,5 +494,6 @@
         private System.Windows.Forms.DataGridViewLinkColumn Column7;
         private System.Windows.Forms.DataGridViewLinkColumn Column8;
         private System.Windows.Forms.DataGridViewLinkColumn Column11;
+        private System.Windows.Forms.Button btnExport;
     }
 }

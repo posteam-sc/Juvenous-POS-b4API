@@ -49,6 +49,7 @@
             this.usepackagetab = new System.Windows.Forms.TabControl();
             this.tabusepackage = new System.Windows.Forms.TabPage();
             this.CD = new System.Windows.Forms.DataGridView();
+            this.btnExport = new System.Windows.Forms.Button();
             this.groupPurchaseInvoice.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeleteLogList)).BeginInit();
@@ -280,11 +281,22 @@
             this.CD.TabIndex = 6;
             this.CD.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvPurchaseInoivce_CellClick);
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(803, 153);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 8;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // CustomerPurchaseInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 519);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.usepackagetab);
             this.Controls.Add(this.groupPurchaseInvoice);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -326,5 +338,6 @@
         private System.Windows.Forms.DataGridView CD;
         private System.Windows.Forms.TextBox txtPatientID;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnExport;
     }
 }

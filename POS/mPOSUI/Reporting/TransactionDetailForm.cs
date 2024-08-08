@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 using Microsoft.Reporting.WinForms;
 using POS.APP_Data;
 
@@ -2426,11 +2427,79 @@ namespace POS
             }
         }
 
-        private void label8_Click(object sender, EventArgs e)
+        private void btnExport_Click(object sender, EventArgs e)
         {
+            var transactionDetailList = entity.TransactionDetails.ToList();
 
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel Files (*.xlsx)|*.xlsx",
+                Title = "Save an Excel File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                // Check if filePath is valid
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    MessageBox.Show("Invalid file path.");
+                    return;
+                }
+
+                try
+                {
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("TransactionDetail");
+
+                        // Add headers
+                        worksheet.Cell(1, 1).Value = "Id";
+                        worksheet.Cell(1, 2).Value = "TransactionId";
+                        worksheet.Cell(1, 3).Value = "ProductId";
+                        worksheet.Cell(1, 4).Value = "Qty";
+                        worksheet.Cell(1, 5).Value = "UnitPrice";
+                        worksheet.Cell(1, 6).Value = "DiscountRate";
+                        worksheet.Cell(1, 7).Value = "TaxRate";
+                        worksheet.Cell(1, 8).Value = "TotalAmount";
+                        worksheet.Cell(1, 9).Value = "IsDeleted";
+                        worksheet.Cell(1, 10).Value = "ConsignmentPrice";
+                        worksheet.Cell(1, 11).Value = "IsConsignmentPaid";
+                        worksheet.Cell(1, 12).Value = "IsFOC";
+                        worksheet.Cell(1, 13).Value = "SellingPrice";
+                        worksheet.Cell(1, 14).Value = "IsCancelled";
+
+                        // Add data
+                        for (int i = 0; i < transactionDetailList.Count; i++)
+                        {
+                            worksheet.Cell(i + 2, 1).Value = transactionDetailList[i].Id;
+                            worksheet.Cell(i + 2, 2).Value = transactionDetailList[i].TransactionId;
+                            worksheet.Cell(i + 2, 3).Value = transactionDetailList[i].ProductId;
+                            worksheet.Cell(i + 2, 4).Value = transactionDetailList[i].Qty;
+                            worksheet.Cell(i + 2, 5).Value = transactionDetailList[i].UnitPrice;
+                            worksheet.Cell(i + 2, 6).Value = transactionDetailList[i].DiscountRate;
+                            worksheet.Cell(i + 2, 7).Value = transactionDetailList[i].TaxRate;
+                            worksheet.Cell(i + 2, 8).Value = transactionDetailList[i].TotalAmount;
+                            worksheet.Cell(i + 2, 9).Value = transactionDetailList[i].IsDeleted;
+                            worksheet.Cell(i + 2, 10).Value = transactionDetailList[i].ConsignmentPrice;
+                            worksheet.Cell(i + 2, 11).Value = transactionDetailList[i].IsConsignmentPaid;
+                            worksheet.Cell(i + 2, 12).Value = transactionDetailList[i].IsFOC;
+                            worksheet.Cell(i + 2, 13).Value = transactionDetailList[i].SellingPrice;
+                            worksheet.Cell(i + 2, 14).Value = transactionDetailList[i].IsCancelled;
+                        }
+
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("File saved successfully to " + filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
         }
-
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using POS.APP_Data;
+﻿using ClosedXML.Excel;
+using POS.APP_Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -872,6 +873,161 @@ namespace POS.mPOSUI.CustomerPurchaseInvoice
         private void usepackagetab_TabIndexChanged(object sender, EventArgs e)
         {
             ChangegvPurchaseInoivceCellColor();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            var packageUsed = (from ppi in entity.PackagePurchasedInvoices
+                                where ppi.Product.IsPackage == true
+                                //&& (ppi.InvoiceDate >= dtDate.Value.Date && ppi.InvoiceDate <= dtToDate.Value.Date || ppi.Customer.Id == editCustomerID)
+                                && ppi.TransactionDetail.IsDeleted == false && ppi.IsCancelled == false
+                                && (ppi.packageFrequency * ppi.TransactionDetail.Qty) - ppi.UseQty != 0
+                                select new
+                                {
+                                    packagePurchasedInvoiceId = ppi.PackagePurchasedInvoiceId,
+                                    TransactionId = ppi.TransactionDetail.Transaction.Id,
+                                    Transaction_Date = ppi.InvoiceDate,
+                                    Customer_Name = ppi.Customer.Name,
+                                    Product_Name = ppi.Product.Name,
+                                    Procedure_Qty = ppi.packageFrequency * ppi.TransactionDetail.Qty,
+                                    Offset_Qty = ppi.UseQty,
+                                    Available_Qty = (ppi.packageFrequency * ppi.TransactionDetail.Qty) - ppi.UseQty
+                                }).OrderByDescending(y => y.Transaction_Date).ToList();
+
+            var packageUsedHistory = (from puh in entity.PackageUsedHistories
+                                    where puh.IsDelete == false 
+                                    //&& (puh.UsedDate >= dtDate.Value.Date && puh.UsedDate <= dtToDate.Value.Date || puh.PackagePurchasedInvoice.Customer.Id == editCustomerID)
+                                    select new
+                                    {
+                                        PackageUsedHistoryId = puh.PackageUsedHistoryId,
+                                        Transaction_ID = puh.PackagePurchasedInvoice.TransactionDetail.TransactionId,
+                                        Customer_Name = puh.Customer.Name,
+                                        Transaction_Date = puh.PackagePurchasedInvoice.InvoiceDate,
+                                        Used_Date = puh.UsedDate,
+                                        Product_Name = puh.PackagePurchasedInvoice.Product.Name,
+                                        Offset_Qty = puh.UseQty,
+                                        Doctor_Name = puh.CustomerIDAsDoctor,
+                                        Therapist_Name = puh.CustomerIDAsTherapist,
+                                        Nurse_Aid = puh.CustomerIDAsAssistantNurse,
+                                        Remark = puh.Remark
+                                    }).OrderByDescending(y => y.Used_Date).ToList();
+
+            var packageUsedHistoryDelete = (from puh in entity.PackageUsedHistories
+                                            where puh.IsDelete == true 
+                                            //&& puh.UsedDate >= dtDate.Value.Date && puh.UsedDate <= dtToDate.Value.Date
+                                            select new
+                                            {
+                                                PackageUsedHistoryId = puh.PackageUsedHistoryId,
+                                                Transaction_ID = puh.PackagePurchasedInvoice.TransactionDetail.TransactionId,
+                                                Customer_Name = puh.Customer.Name,
+                                                Transaction_Date = puh.PackagePurchasedInvoice.InvoiceDate,
+                                                Used_Date = puh.UsedDate,
+                                                Product_Name = puh.PackagePurchasedInvoice.Product.Name,
+                                                Offset_Qty = puh.UseQty,
+                                            }).OrderByDescending(y => y.Transaction_Date).ToList();
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel Files (*.xlsx)|*.xlsx",
+                Title = "Save an Excel File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                // Check if filePath is valid
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    MessageBox.Show("Invalid file path.");
+                    return;
+                }
+
+                try
+                {
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var packageUsedWorksheet = workbook.Worksheets.Add("PackageUsed");
+                        var packageUsedHistoryWorksheet = workbook.Worksheets.Add("packageUsedHistory");
+                        var packageUsedHistoryDeleteWorksheet = workbook.Worksheets.Add("packageUsedHistoryDelete");
+
+                        #region Add PackageUsed header and data
+                        packageUsedWorksheet.Cell(1, 1).Value = "TransactionId";
+                        packageUsedWorksheet.Cell(1, 2).Value = "InvoiceDate";
+                        packageUsedWorksheet.Cell(1, 3).Value = "CustomerName";
+                        packageUsedWorksheet.Cell(1, 4).Value = "ProductName";
+                        packageUsedWorksheet.Cell(1, 5).Value = "ProcedureQty";
+                        packageUsedWorksheet.Cell(1, 6).Value = "OffsetQty";
+                        packageUsedWorksheet.Cell(1, 7).Value = "AvailabelQty";
+                        
+                        for (int i = 0; i < packageUsed.Count; i++)
+                        {
+                            packageUsedWorksheet.Cell(i + 2, 1).Value = packageUsed[i].TransactionId;
+                            packageUsedWorksheet.Cell(i + 2, 2).Value = packageUsed[i].Transaction_Date;
+                            packageUsedWorksheet.Cell(i + 2, 3).Value = packageUsed[i].Customer_Name;
+                            packageUsedWorksheet.Cell(i + 2, 4).Value = packageUsed[i].Product_Name;
+                            packageUsedWorksheet.Cell(i + 2, 5).Value = packageUsed[i].Procedure_Qty;
+                            packageUsedWorksheet.Cell(i + 2, 6).Value = packageUsed[i].Offset_Qty;
+                            packageUsedWorksheet.Cell(i + 2, 7).Value = packageUsed[i].Available_Qty;
+                        }
+                        #endregion
+
+                        #region Add PackageUsedHistory header and data
+                        packageUsedHistoryWorksheet.Cell(1, 1).Value = "TransactionId";
+                        packageUsedHistoryWorksheet.Cell(1, 2).Value = "CustomerName";
+                        packageUsedHistoryWorksheet.Cell(1, 3).Value = "TransactionDate";
+                        packageUsedHistoryWorksheet.Cell(1, 4).Value = "UsedDate";
+                        packageUsedHistoryWorksheet.Cell(1, 5).Value = "ProductName";
+                        packageUsedHistoryWorksheet.Cell(1, 6).Value = "OffsetQty";
+                        packageUsedHistoryWorksheet.Cell(1, 7).Value = "DoctorName";
+                        packageUsedHistoryWorksheet.Cell(1, 8).Value = "TherapistName";
+                        packageUsedHistoryWorksheet.Cell(1, 9).Value = "NurseAid";
+                        packageUsedHistoryWorksheet.Cell(1, 10).Value = "Remark";
+
+                        for (int i = 0; i < packageUsedHistory.Count; i++)
+                        {
+                            packageUsedHistoryWorksheet.Cell(i + 2, 1).Value = packageUsedHistory[i].Transaction_ID;
+                            packageUsedHistoryWorksheet.Cell(i + 2, 2).Value = packageUsedHistory[i].Customer_Name;
+                            packageUsedHistoryWorksheet.Cell(i + 2, 3).Value = packageUsedHistory[i].Transaction_Date;
+                            packageUsedHistoryWorksheet.Cell(i + 2, 4).Value = packageUsedHistory[i].Used_Date;
+                            packageUsedHistoryWorksheet.Cell(i + 2, 5).Value = packageUsedHistory[i].Product_Name;
+                            packageUsedHistoryWorksheet.Cell(i + 2, 6).Value = packageUsedHistory[i].Offset_Qty;
+                            packageUsedHistoryWorksheet.Cell(i + 2, 7).Value = packageUsedHistory[i].Doctor_Name;
+                            packageUsedHistoryWorksheet.Cell(i + 2, 8).Value = packageUsedHistory[i].Therapist_Name;
+                            packageUsedHistoryWorksheet.Cell(i + 2, 9).Value = packageUsedHistory[i].Nurse_Aid;
+                            packageUsedHistoryWorksheet.Cell(i + 2, 10).Value = packageUsedHistory[i].Remark;
+                        }
+                        #endregion
+
+                        #region Add PackageUsedHistoryDelete header and data
+                        packageUsedHistoryDeleteWorksheet.Cell(1, 1).Value = "TransactionId";
+                        packageUsedHistoryDeleteWorksheet.Cell(1, 2).Value = "CustomerName";
+                        packageUsedHistoryDeleteWorksheet.Cell(1, 3).Value = "TransactionDate";
+                        packageUsedHistoryDeleteWorksheet.Cell(1, 4).Value = "UsedDate";
+                        packageUsedHistoryDeleteWorksheet.Cell(1, 5).Value = "ProductName";
+                        packageUsedHistoryDeleteWorksheet.Cell(1, 6).Value = "OffsetQty";
+
+                        for (int i = 0; i < packageUsedHistoryDelete.Count; i++)
+                        {
+                            packageUsedHistoryDeleteWorksheet.Cell(i + 2, 1).Value = packageUsedHistoryDelete[i].Transaction_ID;
+                            packageUsedHistoryDeleteWorksheet.Cell(i + 2, 2).Value = packageUsedHistoryDelete[i].Customer_Name;
+                            packageUsedHistoryDeleteWorksheet.Cell(i + 2, 3).Value = packageUsedHistoryDelete[i].Transaction_Date;
+                            packageUsedHistoryDeleteWorksheet.Cell(i + 2, 4).Value = packageUsedHistoryDelete[i].Used_Date;
+                            packageUsedHistoryDeleteWorksheet.Cell(i + 2, 5).Value = packageUsedHistoryDelete[i].Product_Name;
+                            packageUsedHistoryDeleteWorksheet.Cell(i + 2, 6).Value = packageUsedHistoryDelete[i].Offset_Qty;
+                        }
+                        #endregion
+
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("File saved successfully to " + filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
         }
     }
 }

@@ -64,6 +64,7 @@
             this.ColViewPackage = new System.Windows.Forms.DataGridViewLinkColumn();
             this.ColEdit = new System.Windows.Forms.DataGridViewLinkColumn();
             this.ColDelete = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.btnExport = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -117,7 +118,7 @@
             this.rdoBirthMonth.AutoSize = true;
             this.rdoBirthMonth.Location = new System.Drawing.Point(760, 24);
             this.rdoBirthMonth.Name = "rdoBirthMonth";
-            this.rdoBirthMonth.Size = new System.Drawing.Size(103, 29);
+            this.rdoBirthMonth.Size = new System.Drawing.Size(87, 24);
             this.rdoBirthMonth.TabIndex = 8;
             this.rdoBirthMonth.Text = "BirthMonth";
             this.rdoBirthMonth.UseVisualStyleBackColor = true;
@@ -128,7 +129,7 @@
             this.rdoBirth_Day.AutoSize = true;
             this.rdoBirth_Day.Location = new System.Drawing.Point(637, 24);
             this.rdoBirth_Day.Name = "rdoBirth_Day";
-            this.rdoBirth_Day.Size = new System.Drawing.Size(88, 29);
+            this.rdoBirth_Day.Size = new System.Drawing.Size(72, 24);
             this.rdoBirth_Day.TabIndex = 7;
             this.rdoBirth_Day.Text = "BirthDay";
             this.rdoBirth_Day.UseVisualStyleBackColor = true;
@@ -140,7 +141,7 @@
             this.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpBirthday.Location = new System.Drawing.Point(130, 66);
             this.dtpBirthday.Name = "dtpBirthday";
-            this.dtpBirthday.Size = new System.Drawing.Size(262, 32);
+            this.dtpBirthday.Size = new System.Drawing.Size(262, 27);
             this.dtpBirthday.TabIndex = 4;
             // 
             // rdoBirthDate
@@ -148,7 +149,7 @@
             this.rdoBirthDate.AutoSize = true;
             this.rdoBirthDate.Location = new System.Drawing.Point(516, 25);
             this.rdoBirthDate.Name = "rdoBirthDate";
-            this.rdoBirthDate.Size = new System.Drawing.Size(63, 29);
+            this.rdoBirthDate.Size = new System.Drawing.Size(51, 24);
             this.rdoBirthDate.TabIndex = 2;
             this.rdoBirthDate.Text = "DOB";
             this.rdoBirthDate.UseVisualStyleBackColor = true;
@@ -159,7 +160,7 @@
             this.lblSearchTitle.AutoSize = true;
             this.lblSearchTitle.Location = new System.Drawing.Point(15, 69);
             this.lblSearchTitle.Name = "lblSearchTitle";
-            this.lblSearchTitle.Size = new System.Drawing.Size(129, 25);
+            this.lblSearchTitle.Size = new System.Drawing.Size(104, 20);
             this.lblSearchTitle.TabIndex = 3;
             this.lblSearchTitle.Text = "Member Card No.";
             // 
@@ -169,7 +170,7 @@
             this.rdoMemberCardNo.Checked = true;
             this.rdoMemberCardNo.Location = new System.Drawing.Point(18, 25);
             this.rdoMemberCardNo.Name = "rdoMemberCardNo";
-            this.rdoMemberCardNo.Size = new System.Drawing.Size(150, 29);
+            this.rdoMemberCardNo.Size = new System.Drawing.Size(122, 24);
             this.rdoMemberCardNo.TabIndex = 0;
             this.rdoMemberCardNo.TabStop = true;
             this.rdoMemberCardNo.Text = "Member Card No.";
@@ -181,7 +182,7 @@
             this.rdoCustomerCode.AutoSize = true;
             this.rdoCustomerCode.Location = new System.Drawing.Point(186, 25);
             this.rdoCustomerCode.Name = "rdoCustomerCode";
-            this.rdoCustomerCode.Size = new System.Drawing.Size(98, 29);
+            this.rdoCustomerCode.Size = new System.Drawing.Size(82, 24);
             this.rdoCustomerCode.TabIndex = 1;
             this.rdoCustomerCode.Text = "Patient ID";
             this.rdoCustomerCode.UseVisualStyleBackColor = true;
@@ -192,7 +193,7 @@
             this.rdoCustomerName.AutoSize = true;
             this.rdoCustomerName.Location = new System.Drawing.Point(347, 25);
             this.rdoCustomerName.Name = "rdoCustomerName";
-            this.rdoCustomerName.Size = new System.Drawing.Size(121, 29);
+            this.rdoCustomerName.Size = new System.Drawing.Size(101, 24);
             this.rdoCustomerName.TabIndex = 1;
             this.rdoCustomerName.Text = "Patient Name";
             this.rdoCustomerName.UseVisualStyleBackColor = true;
@@ -237,7 +238,7 @@
             this.txtSearch.Location = new System.Drawing.Point(130, 66);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(262, 32);
+            this.txtSearch.Size = new System.Drawing.Size(262, 27);
             this.txtSearch.TabIndex = 5;
             // 
             // groupBox2
@@ -257,7 +258,7 @@
             this.cboMemberType.FormattingEnabled = true;
             this.cboMemberType.Location = new System.Drawing.Point(126, 18);
             this.cboMemberType.Name = "cboMemberType";
-            this.cboMemberType.Size = new System.Drawing.Size(181, 33);
+            this.cboMemberType.Size = new System.Drawing.Size(181, 28);
             this.cboMemberType.TabIndex = 1;
             this.cboMemberType.SelectedIndexChanged += new System.EventHandler(this.cboMemberType_SelectedIndexChanged);
             // 
@@ -266,7 +267,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(12, 21);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(105, 25);
+            this.label10.Size = new System.Drawing.Size(85, 20);
             this.label10.TabIndex = 0;
             this.label10.Text = "Member Type";
             // 
@@ -443,12 +444,23 @@
             this.ColDelete.UseColumnTextForLinkValue = true;
             this.ColDelete.Width = 80;
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(967, 128);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 4;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // CustomerList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1172, 632);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -504,5 +516,6 @@
         private System.Windows.Forms.DataGridViewLinkColumn ColViewPackage;
         private System.Windows.Forms.DataGridViewLinkColumn ColEdit;
         private System.Windows.Forms.DataGridViewLinkColumn ColDelete;
+        private System.Windows.Forms.Button btnExport;
     }
 }

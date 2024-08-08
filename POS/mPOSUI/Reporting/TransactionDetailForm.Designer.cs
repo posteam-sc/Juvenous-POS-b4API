@@ -141,6 +141,7 @@
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.panel31 = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionDetail)).BeginInit();
             this.tlpCash.SuspendLayout();
             this.panel27.SuspendLayout();
@@ -250,7 +251,7 @@
             this.Column8,
             this.colIsFOC,
             this.colDelete});
-            this.dgvTransactionDetail.Location = new System.Drawing.Point(22, 93);
+            this.dgvTransactionDetail.Location = new System.Drawing.Point(22, 97);
             this.dgvTransactionDetail.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.dgvTransactionDetail.Name = "dgvTransactionDetail";
             this.dgvTransactionDetail.RowHeadersVisible = false;
@@ -559,7 +560,6 @@
             this.label8.TabIndex = 21;
             this.label8.Text = "(Including Discount Amount, Member Card Discount, Tax Amount)";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // lblAmountFromGiftCard
             // 
@@ -1250,12 +1250,23 @@
             this.label22.TabIndex = 16;
             this.label22.Text = "Cancel Amount";
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(443, 5);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 36;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // TransactionDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1081, 690);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.tableLayoutPanel11);
             this.Controls.Add(this.tableLayoutPanel12);
             this.Controls.Add(this.tableLayoutPanel10);
@@ -1479,5 +1490,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.Panel panel31;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button btnExport;
     }
 }

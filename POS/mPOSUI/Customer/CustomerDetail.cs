@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 using POS.APP_Data;
 
 namespace POS
@@ -10,7 +11,7 @@ namespace POS
     public partial class CustomerDetail : Form
     {
         #region Variables
-
+        
         POSEntities entity = new POSEntities();
         public int customerId;
         public long TotalOutstanding;
@@ -413,8 +414,81 @@ namespace POS
             }
         }
 
-        
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            var usePrepaidDebt = entity.UsePrePaidDebts.ToList();
+            var oldTrans = entity.Transactions.Where(trans => trans.IsPaid == true && (trans.IsDeleted == null || trans.IsDeleted == false)).ToList();
 
-       
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel Files (*.xlsx)|*.xlsx",
+                Title = "Save an Excel File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                // Check if filePath is valid
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    MessageBox.Show("Invalid file path.");
+                    return;
+                }
+
+                try
+                {
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("Customer usePrepaidDebt List");
+                        var oldworksheet = workbook.Worksheets.Add("Customer Old Transaction List");
+                        
+                        worksheet.Cell(1, 1).Value = "Id";
+                        worksheet.Cell(1, 2).Value = "CreditTransactionId";
+                        worksheet.Cell(1, 3).Value = "PrePaidDebtTransactionId";
+                        worksheet.Cell(1, 4).Value = "UseAmount";
+                        worksheet.Cell(1, 5).Value = "CashierId";
+                        worksheet.Cell(1, 6).Value = "CounterId";
+                       
+                        for (int i = 0; i < usePrepaidDebt.Count; i++)
+                        {
+                            worksheet.Cell(i + 2, 1).Value = usePrepaidDebt[i].Id;
+                            worksheet.Cell(i + 2, 2).Value = usePrepaidDebt[i].CreditTransactionId;
+                            worksheet.Cell(i + 2, 3).Value = usePrepaidDebt[i].PrePaidDebtTransactionId;
+                            worksheet.Cell(i + 2, 4).Value = usePrepaidDebt[i].UseAmount;
+                            worksheet.Cell(i + 2, 5).Value = usePrepaidDebt[i].CashierId;
+                            worksheet.Cell(i + 2, 6).Value = usePrepaidDebt[i].CounterId;
+                        }
+
+                        oldworksheet.Cell(1, 1).Value = "Id";
+                        oldworksheet.Cell(1, 2).Value = "DateTime";
+                        oldworksheet.Cell(1, 3).Value = "CashierId";
+                        oldworksheet.Cell(1, 4).Value = "Type";
+                        oldworksheet.Cell(1, 5).Value = "TotalAmount";
+                        oldworksheet.Cell(1, 6).Value = "ReceiveAmount";
+                        oldworksheet.Cell(1, 7).Value = "CustomerId";
+
+                        for (int i = 0; i < oldTrans.Count; i++)
+                        {
+                            oldworksheet.Cell(i + 2, 1).Value = oldTrans[i].Id;
+                            oldworksheet.Cell(i + 2, 2).Value = oldTrans[i].DateTime;
+                            oldworksheet.Cell(i + 2, 3).Value = oldTrans[i].UserId;
+                            oldworksheet.Cell(i + 2, 4).Value = oldTrans[i].Type;
+                            oldworksheet.Cell(i + 2, 5).Value = oldTrans[i].TotalAmount;
+                            oldworksheet.Cell(i + 2, 6).Value = oldTrans[i].RecieveAmount;
+                            oldworksheet.Cell(i + 2, 7).Value = oldTrans[i].CustomerId;
+                        }
+
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("File saved successfully to " + filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Objects;
 using System.Linq;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 using POS.APP_Data;
 
 namespace POS
@@ -747,6 +748,115 @@ namespace POS
 
         #endregion
 
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            List<Transaction> transList = (from t in entity.Transactions
+                                           select t).ToList<Transaction>();
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel Files (*.xlsx)|*.xlsx",
+                Title = "Save an Excel File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                // Check if filePath is valid
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    MessageBox.Show("Invalid file path.");
+                    return;
+                }
+
+                try
+                {
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("Transactions");
+
+                        // Add headers
+                        worksheet.Cell(1, 1).Value = "Id";
+                        worksheet.Cell(1, 2).Value = "DateTime";
+                        worksheet.Cell(1, 3).Value = "UserId";
+                        worksheet.Cell(1, 4).Value = "CounterId";
+                        worksheet.Cell(1, 5).Value = "Type";
+                        worksheet.Cell(1, 6).Value = "IsPaid";
+                        worksheet.Cell(1, 7).Value = "IsComplete";
+                        worksheet.Cell(1, 8).Value = "IsActive";
+                        worksheet.Cell(1, 9).Value = "IsDeleted";
+                        worksheet.Cell(1, 10).Value = "PaymentTypeId";
+                        worksheet.Cell(1, 11).Value = "TaxAmount";
+                        worksheet.Cell(1, 12).Value = "DiscountAmount";
+                        worksheet.Cell(1, 13).Value = "TotalAmount";
+                        worksheet.Cell(1, 14).Value = "RecieveAmount";
+                        worksheet.Cell(1, 15).Value = "ParentId";
+                        worksheet.Cell(1, 16).Value = "GiftCardId";
+                        worksheet.Cell(1, 17).Value = "CustomerId";
+                        worksheet.Cell(1, 18).Value = "MCDiscountAmt	";
+                        worksheet.Cell(1, 19).Value = "BDDiscountAmt	";
+                        worksheet.Cell(1, 20).Value = "MemberTypeId	";
+                        worksheet.Cell(1, 21).Value = "MCDiscountPercent	";
+                        worksheet.Cell(1, 22).Value = "ReceivedCurrencyId	";
+                        worksheet.Cell(1, 23).Value = "IsSettlement	";
+                        worksheet.Cell(1, 24).Value = "TranVouNos	";
+                        worksheet.Cell(1, 25).Value = "IsWholeSale	";
+                        worksheet.Cell(1, 26).Value = "GiftCardAmount	";
+                        worksheet.Cell(1, 27).Value = "ShopId";
+                        worksheet.Cell(1, 28).Value = "UpdatedDate";
+                        worksheet.Cell(1, 29).Value = "Note";
+                        worksheet.Cell(1, 30).Value = "TableIdOrQue";
+                        worksheet.Cell(1, 31).Value = "ServiceFee";
+                        worksheet.Cell(1, 32).Value = "IsCancelled";
+                        // Add data
+                        for (int i = 0; i < transList.Count; i++)
+                        {
+                            worksheet.Cell(i + 2, 1).Value = transList[i].Id;
+                            worksheet.Cell(i + 2, 2).Value = transList[i].DateTime;
+                            worksheet.Cell(i + 2, 3).Value = transList[i].UserId;
+                            worksheet.Cell(i + 2, 4).Value = transList[i].CounterId;
+                            worksheet.Cell(i + 2, 5).Value = transList[i].Type;
+                            worksheet.Cell(i + 2, 6).Value = transList[i].IsPaid;
+                            worksheet.Cell(i + 2, 7).Value = transList[i].IsComplete;
+                            worksheet.Cell(i + 2, 8).Value = transList[i].IsActive;
+                            worksheet.Cell(i + 2, 9).Value = transList[i].IsDeleted;
+                            worksheet.Cell(i + 2, 10).Value = transList[i].PaymentTypeId;
+                            worksheet.Cell(i + 2, 11).Value = transList[i].TaxAmount;
+                            worksheet.Cell(i + 2, 12).Value = transList[i].DiscountAmount;
+                            worksheet.Cell(i + 2, 13).Value = transList[i].TotalAmount;
+                            worksheet.Cell(i + 2, 14).Value = transList[i].RecieveAmount;
+                            worksheet.Cell(i + 2, 15).Value = transList[i].ParentId;
+                            worksheet.Cell(i + 2, 16).Value = transList[i].GiftCardId;
+                            worksheet.Cell(i + 2, 17).Value = transList[i].CustomerId;
+                            worksheet.Cell(i + 2, 18).Value = transList[i].MCDiscountAmt;
+                            worksheet.Cell(i + 2, 19).Value = transList[i].BDDiscountAmt;
+                            worksheet.Cell(i + 2, 20).Value = transList[i].MemberTypeId;
+                            worksheet.Cell(i + 2, 21).Value = transList[i].MCDiscountPercent;
+                            worksheet.Cell(i + 2, 22).Value = transList[i].ReceivedCurrencyId;
+                            worksheet.Cell(i + 2, 23).Value = transList[i].IsSettlement;
+                            worksheet.Cell(i + 2, 24).Value = transList[i].TranVouNos;
+                            worksheet.Cell(i + 2, 25).Value = transList[i].IsWholeSale;
+                            worksheet.Cell(i + 2, 26).Value = transList[i].GiftCardAmount;
+                            worksheet.Cell(i + 2, 27).Value = transList[i].ShopId;
+                            worksheet.Cell(i + 2, 28).Value = transList[i].UpdatedDate;
+                            worksheet.Cell(i + 2, 29).Value = transList[i].Note;
+                            worksheet.Cell(i + 2, 30).Value = transList[i].TableIdOrQue;
+                            worksheet.Cell(i + 2, 31).Value = transList[i].ServiceFee;
+                            worksheet.Cell(i + 2, 32).Value = transList[i].IsCancelled;
+                        }
+
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("File saved successfully to " + filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+        }
     }
 }
 

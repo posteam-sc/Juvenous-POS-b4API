@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using POS.APP_Data;
 using System.Diagnostics;
+using ClosedXML.Excel;
 
 namespace POS
 {
@@ -497,6 +498,119 @@ namespace POS
         private void btnPBC_Click(object sender, EventArgs e)
         {
             Process.Start(Application.StartupPath + @"\\POS.btw");
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            productList = entity.Products.ToList();
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel Files (*.xlsx)|*.xlsx",
+                Title = "Save an Excel File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                // Check if filePath is valid
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    MessageBox.Show("Invalid file path.");
+                    return;
+                }
+
+                try
+                {
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("Products");
+
+                        // Add headers
+                        worksheet.Cell(1, 1).Value = "Id";
+                        worksheet.Cell(1, 2).Value = "Name";
+                        worksheet.Cell(1, 3).Value = "ProductCode";
+                        worksheet.Cell(1, 4).Value = "Barcode";
+                        worksheet.Cell(1, 5).Value = "Price";
+                        worksheet.Cell(1, 6).Value = "Qty";
+                        worksheet.Cell(1, 7).Value = "BrandId";
+                        worksheet.Cell(1, 8).Value = "ProductLocation";
+                        worksheet.Cell(1, 9).Value = "ProductCategoryId";
+                        worksheet.Cell(1, 10).Value = "ProductSubCategoryId";
+                        worksheet.Cell(1, 11).Value = "UnitId";
+                        worksheet.Cell(1, 12).Value = "TaxId";
+                        worksheet.Cell(1, 13).Value = "MinStockQty";
+                        worksheet.Cell(1, 14).Value = "DiscountRate";
+                        worksheet.Cell(1, 15).Value = "IsWrapper";
+                        worksheet.Cell(1, 16).Value = "IsConsignment";
+                        worksheet.Cell(1, 17).Value = "IsDiscontinue";
+                        worksheet.Cell(1, 18).Value = "ConsignmentPrice	";
+                        worksheet.Cell(1, 19).Value = "ConsignmentCounterId	";
+                        worksheet.Cell(1, 20).Value = "Size	";
+                        worksheet.Cell(1, 21).Value = "PurchasePrice	";
+                        worksheet.Cell(1, 22).Value = "IsNotifyMinStock	";
+                        worksheet.Cell(1, 23).Value = "Amount	";
+                        worksheet.Cell(1, 24).Value = "Percent	";
+                        worksheet.Cell(1, 25).Value = "CreatedBy	";
+                        worksheet.Cell(1, 26).Value = "CreatedDate	";
+                        worksheet.Cell(1, 27).Value = "UpdatedBy";
+                        worksheet.Cell(1, 28).Value = "UpdatedDate";
+                        worksheet.Cell(1, 29).Value = "PhotoPath";
+                        worksheet.Cell(1, 30).Value = "WholeSalePrice";
+                        worksheet.Cell(1, 31).Value = "IsPackage";
+                        worksheet.Cell(1, 32).Value = "PackageQty";
+                        worksheet.Cell(1, 33).Value = "UnitType";
+                        worksheet.Cell(1, 34).Value = "IsService";
+                        // Add data
+                        for (int i = 0; i < productList.Count; i++)
+                        {
+                            worksheet.Cell(i + 2, 1).Value = productList[i].Id;
+                            worksheet.Cell(i + 2, 2).Value = productList[i].Name;
+                            worksheet.Cell(i + 2, 3).Value = productList[i].ProductCode;
+                            worksheet.Cell(i + 2, 4).Value = productList[i].Barcode;
+                            worksheet.Cell(i + 2, 5).Value = productList[i].Price;
+                            worksheet.Cell(i + 2, 6).Value = productList[i].Qty;
+                            worksheet.Cell(i + 2, 7).Value = productList[i].BrandId;
+                            worksheet.Cell(i + 2, 8).Value = productList[i].ProductLocation;
+                            worksheet.Cell(i + 2, 9).Value = productList[i].ProductCategoryId;
+                            worksheet.Cell(i + 2, 10).Value = productList[i].ProductSubCategoryId;
+                            worksheet.Cell(i + 2, 11).Value = productList[i].UnitId;
+                            worksheet.Cell(i + 2, 12).Value = productList[i].TaxId;
+                            worksheet.Cell(i + 2, 13).Value = productList[i].MinStockQty;
+                            worksheet.Cell(i + 2, 14).Value = productList[i].DiscountRate;
+                            worksheet.Cell(i + 2, 15).Value = productList[i].IsWrapper;
+                            worksheet.Cell(i + 2, 16).Value = productList[i].IsConsignment;
+                            worksheet.Cell(i + 2, 17).Value = productList[i].IsDiscontinue;
+                            worksheet.Cell(i + 2, 18).Value = productList[i].ConsignmentPrice;
+                            worksheet.Cell(i + 2, 19).Value = productList[i].ConsignmentCounterId;
+                            worksheet.Cell(i + 2, 20).Value = productList[i].Size;
+                            worksheet.Cell(i + 2, 21).Value = productList[i].PurchasePrice;
+                            worksheet.Cell(i + 2, 22).Value = productList[i].IsNotifyMinStock;
+                            worksheet.Cell(i + 2, 23).Value = productList[i].Amount;
+                            worksheet.Cell(i + 2, 24).Value = productList[i].Percent;
+                            worksheet.Cell(i + 2, 25).Value = productList[i].CreatedBy;
+                            worksheet.Cell(i + 2, 26).Value = productList[i].CreatedDate;
+                            worksheet.Cell(i + 2, 27).Value = productList[i].UpdatedBy;
+                            worksheet.Cell(i + 2, 28).Value = productList[i].UpdatedDate;
+                            worksheet.Cell(i + 2, 29).Value = productList[i].PhotoPath;
+                            worksheet.Cell(i + 2, 30).Value = productList[i].WholeSalePrice;
+                            worksheet.Cell(i + 2, 31).Value = productList[i].IsPackage;
+                            worksheet.Cell(i + 2, 32).Value = productList[i].PackageQty;
+                            worksheet.Cell(i + 2, 33).Value = productList[i].UnitType;
+                            worksheet.Cell(i + 2, 34).Value = productList[i].IsService;
+                        }
+
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("File saved successfully to " + filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
         }
     }
 }
